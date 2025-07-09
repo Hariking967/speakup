@@ -193,7 +193,7 @@ export default function SignUpView() {
                 </form>
                </Form>
                 <div className="bg-gradient-to-br from-blue-400 via-pink-600 to-yellow-300 relative hidden md:flex flex-col gap-y-4 items-center justify-center h-full w-full p-4">
-                    <img src='/logo.jpg' alt='logo' className='h-[92px] w-[92px] rounded-2xl'></img>
+                    <img src='/logo.png' alt='logo' className='h-[92px] w-[92px] rounded-2xl'></img>
                     <p className='text-2xl font-semibold text-white'>SpeakUP</p>
                 </div>
             </CardContent>
