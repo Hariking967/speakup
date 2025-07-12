@@ -1,0 +1,6 @@
+SAAS Notes:
+
+toggle navbar :
+import useSidebar
+const {state, toggleSidebar, isMobile} = useSidebar();
+inside Button (onclick = {togglesidebar}) put a PanelLeftIcon
