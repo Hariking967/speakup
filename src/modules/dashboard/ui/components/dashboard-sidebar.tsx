@@ -16,12 +16,12 @@ const firstSection = [
     {
         icon: UserIcon,
         label: "Call Human",
-        href: "/callHuman"
+        href: "/call-human"
     },
     {
         icon: BotIcon,
         label: "Call AI",
-        href: "/callAI"
+        href: "/call-ai"
     }
 ];
 
