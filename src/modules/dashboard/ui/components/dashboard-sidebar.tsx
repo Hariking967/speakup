@@ -2,16 +2,16 @@
 
 import DashboardUserButton from "./dashboard-user-button";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { BotIcon, ContactIcon, History, HistoryIcon, StarIcon, UserIcon, VideoIcon } from "lucide-react";
+import { BotIcon, ContactIcon, History, HistoryIcon, HomeIcon, StarIcon, UserIcon, VideoIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 const firstSection = [
     {
-        icon: VideoIcon,
-        label: "Meetings",
-        href: "/meetings"
+        icon: HomeIcon,
+        label: "Home",
+        href: "/"
     },
     {
         icon: UserIcon,
