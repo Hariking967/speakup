@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import React from 'react'
 import DashboardSidebar from '@/modules/dashboard/ui/components/dashboard-sidebar';
 import HeaderNavView from '@/modules/dashboard/ui/components/header-nav-view';
+import { TRPCReactProvider } from "@/trpc/client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,17 +28,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-zinc-700">
-        <SidebarProvider>
-        <DashboardSidebar></DashboardSidebar>
-        <main className='flex flex-col h-screen w-screen bg-zinc-800'>
-          
-            <HeaderNavView></HeaderNavView>
-            {children}
-        </main>
-    </SidebarProvider>
-      </body>
-    </html>
+    <TRPCReactProvider>
+      <html lang="en">
+        <body className="bg-zinc-700">
+          <SidebarProvider>
+          <DashboardSidebar></DashboardSidebar>
+          <main className='flex flex-col h-screen w-screen bg-zinc-800'>
+            
+              <HeaderNavView></HeaderNavView>
+              {children}
+          </main>
+      </SidebarProvider>
+        </body>
+      </html>
+    </TRPCReactProvider>
+    
   );
 }
