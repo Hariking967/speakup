@@ -4,13 +4,24 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import CallAIView from '@/modules/agents/ui/views/callai';
 import { CallAIViewLoading, CallAIViewError } from '@/modules/agents/ui/views/callai';
+import CallAIHeader from '@/modules/agents/ui/views/call-ai-header';
+import { headers } from 'next/headers';
+import { auth } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
-
-export default function page() {
+export default async function CallAIPage() {
+  const session = await auth.api.getSession({
+      headers: await headers()
+    })
+    if (!session)
+    {
+      redirect("auth/sign-in")
+    }
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions());
   return (
     <div>
+      <CallAIHeader />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback={<CallAIViewLoading />}>
           <ErrorBoundary fallback={<CallAIViewError />}>

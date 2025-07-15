@@ -6,6 +6,7 @@ import React from 'react'
 import DashboardSidebar from '@/modules/dashboard/ui/components/dashboard-sidebar';
 import HeaderNavView from '@/modules/dashboard/ui/components/header-nav-view';
 import { TRPCReactProvider } from "@/trpc/client";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
           <main className='flex flex-col h-screen w-screen bg-zinc-800'>
             
               <HeaderNavView></HeaderNavView>
+              <Toaster></Toaster>
               {children}
           </main>
       </SidebarProvider>
