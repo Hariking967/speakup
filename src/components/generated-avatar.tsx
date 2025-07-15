@@ -33,7 +33,7 @@ export const GenreatedAvatar = ({
     }
     return (
         <Avatar className={cn(className)}>
-            <AvatarImage src={avatar.toDataUri()} alt='Avatar' className='size-16'/>
+            <AvatarImage src={avatar.toDataUri()} alt='Avatar'/>
                 <AvatarFallback>{seed.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
     );
