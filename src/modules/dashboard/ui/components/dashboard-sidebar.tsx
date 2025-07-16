@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 const firstSection = [
     {
-        icon: HomeIcon,
-        label: "Home",
-        href: "/"
+        icon: VideoIcon,
+        label: "Meetings",
+        href: "/meetings"
     },
     {
         icon: UserIcon,
