@@ -20,7 +20,7 @@ export default function AgentIdViewHeader({ agentId,agentName,onEdit,onRemove }:
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild className='font-medium text-xl'>
-              <Link href="/agents" className='text-white hover:text-zinc-300'>
+              <Link href="/call-ai" className='text-white hover:text-zinc-300'>
                 My Agents
               </Link>
             </BreadcrumbLink>
