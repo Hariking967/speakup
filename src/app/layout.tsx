@@ -7,6 +7,7 @@ import DashboardSidebar from '@/modules/dashboard/ui/components/dashboard-sideba
 import HeaderNavView from '@/modules/dashboard/ui/components/header-nav-view';
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from 'nuqs/adapters/next';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,21 +30,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <TRPCReactProvider>
-      <html lang="en">
-        <body className="bg-zinc-700">
-          <SidebarProvider>
-          <DashboardSidebar></DashboardSidebar>
-          <main className='flex flex-col h-screen w-screen bg-zinc-800'>
-            
-              <HeaderNavView></HeaderNavView>
-              <Toaster></Toaster>
-              {children}
-          </main>
-      </SidebarProvider>
-        </body>
-      </html>
-    </TRPCReactProvider>
-    
+    <NuqsAdapter>
+      <TRPCReactProvider>
+        <html lang="en">
+          <body className="bg-zinc-700">
+            <SidebarProvider>
+            <DashboardSidebar></DashboardSidebar>
+            <main className='flex flex-col h-screen w-screen bg-zinc-800'>
+              
+                <HeaderNavView></HeaderNavView>
+                <Toaster></Toaster>
+                {children}
+            </main>
+        </SidebarProvider>
+          </body>
+        </html>
+      </TRPCReactProvider>
+    </NuqsAdapter>
   );
 }

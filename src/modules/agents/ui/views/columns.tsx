@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 export const columns: ColumnDef<AgentGetOne>[] = [
   {
     accessorKey: "name",
-    header: "Agent Name",
+    header: "Agent Name", 
     cell: ({row})=>(
       <div className="flex flex-col gap-y-1">
         <div className="flex items-center">
@@ -19,7 +19,7 @@ export const columns: ColumnDef<AgentGetOne>[] = [
         <div className="flex items-center gap-x-2">
           <div className="flex items-center gap-x-1">
             <CornerDownRight className="size-3 text-muted-foreground" />
-            <span className="text-sm text-zinc-400 max-w-[200px] truncate capitalize">
+            <span className="text-sm text-white max-w-[200px] truncate capitalize">
               {row.original.instructions}
             </span>
           </div>
@@ -31,9 +31,10 @@ export const columns: ColumnDef<AgentGetOne>[] = [
     accessorKey: "meetingsCount",
     header: "Meetings",
     cell: ({row}) => (
-      <Badge className="flex items-center gap-x-2 [&>svg]:size-4">
+      <Badge className="flex items-center gap-x-2 [&>svg]:size-6">
         <VideoIcon className="text-white" />
         5 meetings
+        {/* {row.original.meetingsCount} {row.original.meetingCount == 1 ? "meeting" : "meetings"} */}
       </Badge>
     )
   }

@@ -8,8 +8,14 @@ import CallAIHeader from '@/modules/agents/ui/views/call-ai-header';
 import { headers } from 'next/headers';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
+import type { SearchParams } from 'nuqs';
+import { loadSearchParams } from '@/modules/agents/params';
+interface Props{
+  searchParams: Promise<SearchParams>
+}
 
-export default async function CallAIPage() {
+export default async function CallAIPage({searchParams}:Props) {
+  const filters = await loadSearchParams(searchParams);
   const session = await auth.api.getSession({
       headers: await headers()
     })
@@ -18,7 +24,7 @@ export default async function CallAIPage() {
       redirect("auth/sign-in")
     }
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions());
+  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions({...filters}));
   return (
     <div>
       <CallAIHeader />
