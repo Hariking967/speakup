@@ -6,6 +6,7 @@ import {z} from 'zod';
 import { eq, and, ilike, sql, getTableColumns, desc, count } from 'drizzle-orm';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
 import { meetingsInsertSchema, meetingsUpdateSchema } from "../schema";
+import { MeetingStatus } from "../types";
 
 export const meetingsRouter = createTRPCRouter({
     getMany: protectedProcedure
@@ -17,10 +18,18 @@ export const meetingsRouter = createTRPCRouter({
                 .max(MAX_PAGE_SIZE)
                 .default(DEFAULT_PAGE_SIZE),
             search: z.string()
-                .nullish()
+                .nullish(),
+            agentId: z.string().nullish(),
+            status: z.enum([
+                MeetingStatus.Upcoming,
+                MeetingStatus.Active,
+                MeetingStatus.Completed,
+                MeetingStatus.Processing,
+                MeetingStatus.Cancelled
+                ]).nullish()
         }))
         .query(async ({ctx, input}) => {
-            const { search, page, pageSize } = input;
+            const { page, pageSize, status, search, agentId } = input;
             const data = await db.select({
                                     ...getTableColumns(meetings),
                                     agent: agents,
@@ -31,7 +40,9 @@ export const meetingsRouter = createTRPCRouter({
                                 .where(
                                     and(
                                         eq(meetings.userId, ctx.auth.user.id),
-                                        search ? ilike(meetings.name, `%${search}%`): undefined)
+                                        search ? ilike(meetings.name, `%${search}%`): undefined,
+                                        status ? eq(meetings.status, status) : undefined,
+                                        agentId ? eq(meetings.agentId, agentId) : undefined)
                                 )
                                 .orderBy(desc(meetings.createdAt), desc(meetings.id))
                                 .limit(pageSize)
@@ -44,7 +55,9 @@ export const meetingsRouter = createTRPCRouter({
                                 .where(
                                     and(
                                         eq(meetings.userId, ctx.auth.user.id),
-                                        search ? ilike(meetings.name, `%${search}%`): undefined)
+                                        search ? ilike(meetings.name, `%${search}%`): undefined,
+                                        status ? eq(meetings.status, status) : undefined,
+                                        agentId ? eq(meetings.agentId, agentId) : undefined)
                                 );
             const totalPages = Math.ceil(total.count / pageSize);
 
