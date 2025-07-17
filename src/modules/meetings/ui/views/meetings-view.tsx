@@ -18,7 +18,7 @@ export default function MeetingsView() {
   const {data} = useSuspenseQuery(trpc.meetings.getMany.queryOptions({...filters}))
   return (
     <div>
-      <DataTable columns={columns} data={data.items} onRowClick={(row)=>{`/meetings/${row.id}`}} />
+      <DataTable columns={columns} data={data.items} onRowClick={(row)=>{router.push(`/meetings/${row.id}`)}} />
       <DataPagination page={filters.page} totalPages={data.totalPages} onPageChange={(page)=>setFilters({page})} />
       {data.items.length == 0 && (
         <EmptyState title='Create your first meeting' description='Schedule a meeting to connect with others.'/>
