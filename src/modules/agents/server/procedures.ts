@@ -94,7 +94,7 @@ export const agentsRouter = createTRPCRouter({
     update: protectedProcedure
         .input(agentsUpdateSchema)
         .mutation(async ({ctx, input}) => {
-            const updatedAgent = await db
+            const [updatedAgent] = await db
                 .update(agents)
                 .set(input)
                 .where(and(
