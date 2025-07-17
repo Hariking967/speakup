@@ -26,7 +26,7 @@ export default function HeaderNavView() {
       </div>
       <div className='flex flex-row justify-between items-center gap-2'>
         <span className=' text-white text-3xl'>{session?.user.name}</span>
-        <Button onClick={()=>{authClient.signOut({fetchOptions: {onSuccess:()=> router.push('/auth/sign-in')}})}}>Logout</Button>
+        <Button className='bg-red-700' onClick={()=>{authClient.signOut({fetchOptions: {onSuccess:()=> router.push('/auth/sign-in')}})}}>Logout</Button>
       </div>
     </div>
   )

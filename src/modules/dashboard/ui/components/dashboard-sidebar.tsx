@@ -56,7 +56,7 @@ export default function DashboardSidebar() {
     <Sidebar>
         <SidebarHeader className="text-sidebar-accent-foreground">
             <Link href='/' className="flex items-center gap-2 px-2 pt-2">
-                <Image src='/logo.png' height={45} width={45} alt="SpeakUP"></Image>
+                <Image className="rounded-full" src='/logo_bg.jpg' height={45} width={45} alt="SpeakUP"></Image>
                 <p className="text-2xl font-semibold">SpeakUP</p>
             </Link>
         </SidebarHeader>

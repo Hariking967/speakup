@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { MeetingGetOne } from '../../type';
+import { MeetingGetOne } from '../../types';
 import CommandSelect from './command-select';
 import { GenreatedAvatar } from '@/components/generated-avatar';
 import NewAgentDialogue from '@/modules/agents/ui/views/new-agent-dialogue';
