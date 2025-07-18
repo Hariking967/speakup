@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import { Geist, Geist_Mono } from "next/font/google";
+import ".././globals.css";
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import React from 'react'
+import DashboardSidebar from '@/modules/dashboard/ui/components/dashboard-sidebar';
+import HeaderNavView from '@/modules/dashboard/ui/components/header-nav-view';
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from 'nuqs/adapters/next';
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,14 +32,15 @@ export default function RootLayout({
   return (
     <NuqsAdapter>
       <TRPCReactProvider>
-        <html lang="en">
-          <body className="bg-zinc-700">
+            <SidebarProvider>
+            <DashboardSidebar></DashboardSidebar>
             <main className='flex flex-col h-screen w-screen bg-zinc-800'>
+              
+                <HeaderNavView></HeaderNavView>
                 <Toaster></Toaster>
                 {children}
             </main>
-          </body>
-        </html>
+        </SidebarProvider>
       </TRPCReactProvider>
     </NuqsAdapter>
   );
