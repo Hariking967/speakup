@@ -49,8 +49,12 @@ export const CallConnect = ({meetingId, meetingName, userId, userName, userImage
   useEffect(()=>{
     if (!client) return;
     const _call = client.call("default", meetingId);
+    //cw antonio
     _call.camera.disable();
     _call.microphone.disable();
+    // // chatgpt
+    // _call.camera.enable();
+    // _call.microphone.enable();
     setCall(_call);
     return ()=>{
       if (_call.state.callingState !== CallingState.LEFT){
